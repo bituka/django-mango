@@ -1,4 +1,6 @@
 from django.db import models
+from django.core import exceptions
+from django.utils.translation import ugettext_lazy as _
 
 
 class Conference(models.Model):
@@ -12,3 +14,9 @@ class Conference(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def clean(self):
+        enabled_conf_count = Conference.objects.filter(is_enabled=True).count()
+        if self.is_enabled and enabled_conf_count > 0:
+            raise exceptions.ValidationError(
+                _(u"There can only be one conference enabled at a time."))
