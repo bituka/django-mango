@@ -7,10 +7,12 @@ History
 +++++++++++++++++++
 
 - Added speakers list view
+- Added conference appp with basic conference model
 
 NOTES:
 
 - For speakers list view to work, add a speakers group and update the `SPEAKERS_GROUP_NAME` setting
+- Run manage.py migrate conference
 
 0.1-dev (2012-07-08)
 +++++++++++++++++++

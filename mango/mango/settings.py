@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'endless_pagination',
     'django_extensions',
     # Django Mango
+    'conference',
     'generic',
     'proposal',
     'speakers',
