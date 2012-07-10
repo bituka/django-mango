@@ -145,7 +145,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 
 TEST_RUNNER = 'discover_runner.DiscoverRunner'
 TEST_DISCOVER_TOP_LEVEL = PROJECT_ROOT
-TEST_DISCOVER_ROOT = TEST_DISCOVER_TOP_LEVEL
+TEST_DISCOVER_ROOT = os.path.join(TEST_DISCOVER_TOP_LEVEL, 'apps')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
