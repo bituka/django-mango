@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # Django Mango
     url(r'proposal/', include('proposal.urls')),
     url(r'speakers/', include('speakers.urls')),
+    url(r'conference/', include('conference.urls')),
 )
 
 if settings.DEBUG:

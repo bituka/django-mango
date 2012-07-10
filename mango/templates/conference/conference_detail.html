@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="conference-detail">
+    {% if active_conference %}
+        
+    {% else %}
+        <p>{% blocktrans %}There are no conferences yet. <a href="#">Create one</a>?{% endblocktrans %}</p>
+    {% endif %}
+</div>
+{% endblock content %}
