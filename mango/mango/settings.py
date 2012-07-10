@@ -2,6 +2,7 @@
 
 import os
 import site
+import sys
 
 
 PROJECT_ROOT = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
@@ -209,6 +210,10 @@ LOGIN_ERROR_URL = '/login-error'
 # Django Mango Settings
 
 SPEAKERS_GROUP_NAME = ''
+
+# if we're testing, use a sqlite db
+if 'test' in sys.argv:
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
 
 try:
     from localsettings import *
