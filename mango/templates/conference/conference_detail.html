@@ -6,7 +6,7 @@
     {% if active_conference %}
         
     {% else %}
-        <p>{% blocktrans %}There are no conferences yet. <a href="#">Create one</a>?{% endblocktrans %}</p>
+        <p>{% trans "There are no conferences yet" %}. <a href="{% url conference_create %}">{% trans "Create one" %}</a>?</p>
     {% endif %}
 </div>
 {% endblock content %}

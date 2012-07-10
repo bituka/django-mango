@@ -3,6 +3,12 @@
 History
 -------
 
+0.1-dev (2012-07-10)
++++++++++++++++++++
+
+- Added django_discover_runner to dependencies
+- Renamed tests to test_*.py format
+
 0.1-dev (2012-07-09)
 +++++++++++++++++++
 

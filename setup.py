@@ -13,7 +13,13 @@ requires = [
     'django-social-auth',
     'South==0.7.5',
     'django-endless-pagination==1.1',
-    'django_extensions==0.9'
+    'django_extensions==0.9',
+    'django_discover_runner==0.2'
+]
+tests_require = [
+    'Django==1.4',
+    'django_extensions==0.9',
+    'django_discover_runner==0.2'
 ]
 
 setup(
@@ -30,6 +36,7 @@ setup(
     package_data={'': ['LICENSE']},
     include_package_data=True,
     install_requires=requires,
+    tests_reuire=tests_require,
     license=open("LICENSE").read(),
     classifiers=(
         'Development Status :: 1 - Planning',
