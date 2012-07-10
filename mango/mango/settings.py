@@ -6,7 +6,7 @@ import sys
 
 
 PROJECT_ROOT = os.path.split(os.path.abspath(os.path.dirname(__file__)))[0]
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # add apps' path so we can import them directly
