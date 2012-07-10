@@ -14,7 +14,8 @@ requires = [
     'South==0.7.5',
     'django-endless-pagination==1.1',
     'django_extensions==0.9',
-    'django_discover_runner==0.2'
+    'django_discover_runner==0.2',
+    'gunicorn==0.14.5'
 ]
 tests_require = [
     'Django==1.4',
