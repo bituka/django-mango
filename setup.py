@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
-from mango import mango
+__title__ = 'django-mango'
+__version__ = '0.1-dev'
+__author__ = 'PyPUG Team'
 
 try:
     from setuptools import setup
@@ -24,12 +26,12 @@ tests_require = [
 ]
 
 setup(
-    name=mango.__title__,
-    version=mango.__version__,
+    name=__title__,
+    version=__version__,
     description='More Mango, less Django!',
     long_description=open('README.rst').read() + '\n\n' +
                      open('HISTORY.rst').read(),
-    author=mango.__author__,
+    author=__author__,
     author_email='',
     url='https://github.com/pypug/django-mango',
     packages=packages,
@@ -37,7 +39,7 @@ setup(
     package_data={'': ['LICENSE']},
     include_package_data=True,
     install_requires=requires,
-    tests_reuire=tests_require,
+    tests_require=tests_require,
     license=open("LICENSE").read(),
     classifiers=(
         'Development Status :: 1 - Planning',
