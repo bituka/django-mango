@@ -3,6 +3,16 @@
 History
 -------
 
+0.1-dev (2012-07-11)
++++++++++++++++++++
+
+- Added deployment scripts and configs
+- Added ansible playbook
+
+NOTES:
+
+- Ansible playbook uses `django-mango` group for hosts and currently doesn't require sudo
+
 0.1-dev (2012-07-10)
 +++++++++++++++++++
 
