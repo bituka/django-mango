@@ -4,8 +4,13 @@
 
   user: mango
 
+  sudo: True
+
   vars_files:
     - vars.yml
+
+  vars_prompt:
+    supervisord_password: supervisord password (hashed with SHA)
 
   tasks:
   # TODO: install nginx
@@ -14,17 +19,14 @@
   # TODO: install virtualenv
   # TODO: create virtualenv if doesn't exist
   - name: create dirs
-    action: shell mkdir -p $venv_path $conf_path $logs_path
+    action: shell mkdir -p $venv_path $logs_path
+    sudo: False
   # TODO: install and run supervisor
   - name: setup supervisor config
-    action: template src=templates/supervisord.conf dest=$conf_path/supervisord.conf
+    action: template src=templates/supervisord.conf dest=/etc/supervisor/conf.d/mango.conf
     notify:
     - reload supervisord config
-    - restart supervisord processes
 
   handlers:
-  # supervisord
   - name: reload supervisord config
-    action: shell $venv_path/bin/supervisorctl -c $conf_path/supervisord.conf reload
-  - name: restart supervisord processes
-    action: shell $venv_path/bin/supervisorctl -c $conf_path/supervisord.conf restart all
+    action: command supervisorctl reload

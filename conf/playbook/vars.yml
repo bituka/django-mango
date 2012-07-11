@@ -1,6 +1,8 @@
 ---
 repo_path: /home/mango/django-mango
 repo_branch: master
+
 venv_path: /home/mango/mangoenv
-conf_path: /home/mango/conf
 logs_path: /home/mango/logs
+
+supervisord_username: pypug
