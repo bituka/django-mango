@@ -1,0 +1,49 @@
+---
+- hosts: django-mango
+
+  user: mango
+
+  vars:
+    repo_path: /home/mango/django-mango
+    repo_branch: master
+    venv_path: /home/mango/mangoenv
+    conf_path: /home/mango/conf
+    logs_path: /home/mango/logs
+
+  tasks:
+  # setup
+  # TODO: install nginx
+  # TODO: setup nginx config
+  # TODO: install git
+  # TODO: install virtualenv
+  # TODO: create virtualenv if doesn't exist
+  # NOTE: though we're not really at the point of requiring scaling so I think these could wait :D
+  - name: create dirs
+    action: shell mkdir -p $venv_path $conf_path $logs_path
+
+  # supervisord
+  # TODO: install and run supervisor
+  - name: setup supervisor config
+    action: template src=templates/supervisord.conf dest=$conf_path/supervisord.conf
+    notify:
+    - reload supervisord config
+    - restart supervisord processes
+  # django-mango
+  - name: clone repo
+    action: git repo=git://github.com/pypug/django-mango.git dest=$repo_path branch=$repo_branch
+    notify:
+    - setup dependencies
+    - run tests
+    - restart supervisord processes
+
+  handlers:
+  # supervisord
+  - name: reload supervisord config
+    action: shell $venv_path/bin/supervisorctl -c $conf_path/supervisord.conf reload
+  - name: restart supervisord processes
+    action: shell $venv_path/bin/supervisorctl -c $conf_path/supervisord.conf restart all
+  # django-mango
+  - name: setup dependencies
+    action: shell cd $repo_path && $venv_path/bin/python setup.py develop
+  - name: run tests
+    action: shell $venv_path/bin/python $repo_path/mango/manage.py test
