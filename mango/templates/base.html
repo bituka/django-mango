@@ -31,51 +31,54 @@
 </head>
 <body>
 
-    <header class="container">
-        <div class="sixteen columns">
-            <h1><a href="{% url home %}">{% trans "Django Mango" %}</a></h1>
-            <p>{% trans "More Mango, less Django!" %}</p>
+    <header>
+        <div class="container">
+            <div class="sixteen columns">
+                <h1><a href="{% url home %}">{% trans "Django Mango" %}</a></h1>
+                <p>{% trans "More Mango, less Django!" %}</p>
+            </div>
         </div>
     </header>
 
-    <nav class="container">
-        <div class="sixteen columns">
-            <ul class="clearfix">
-                <li><a href="#">{% trans "About" %}</a></li>
-                <li><a href="#">{% trans "Events" %}</a></li>
-                <li><a href="#">{% trans "Speakers" %}</a></li>
-                <li><a href="#">{% trans "Sponsors" %}</a></li>
-                <li><a href="#">{% trans "Venue" %}</a></li>
-                <li>
-                    {% if user.is_authenticated %}
-                        {% blocktrans with username=user.username %}
-                            <a href="#">Signed in as {{ username }}</a>
-                            <ul>
-                                <li><a href="#">Profile</a></li>
-                                <li><a href="#">Logout</a></li>
-                            </ul>
-                        {% endblocktrans %}
-                    {% else %}
-                    <a href="#">{% trans "Login" %}</a>
-                    <ul>
-                        <li>
-                            <a href="{% url socialauth_begin 'twitter' %}">{% trans "Login with Twitter" %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url socialauth_begin 'facebook' %}">{% trans "Login with Facebook" %}</a>
-                        </li>
-                    </ul>
-                    {% endif %}
-                </li>
-            </ul>
+    <nav>
+        <div class="container">
+            <div class="sixteen columns">
+                <ul class="clearfix">
+                    <li><a href="#">{% trans "About" %}</a></li>
+                    <li><a href="#">{% trans "Events" %}</a></li>
+                    <li><a href="#">{% trans "Speakers" %}</a></li>
+                    <li><a href="#">{% trans "Sponsors" %}</a></li>
+                    <li><a href="#">{% trans "Venue" %}</a></li>
+                    <li>
+                        {% if user.is_authenticated %}
+                            {% blocktrans with username=user.username %}
+                                <a href="#">Signed in as {{ username }}</a>
+                                <ul>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Logout</a></li>
+                                </ul>
+                            {% endblocktrans %}
+                        {% else %}
+                        <a href="#">{% trans "Login" %}</a>
+                        <ul>
+                            <li>
+                                <a href="{% url socialauth_begin 'twitter' %}">{% trans "Login with Twitter" %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url socialauth_begin 'facebook' %}">{% trans "Login with Facebook" %}</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-    <section class="container">
-
-        <div class="sixteen columns">
-            {% if messages %}
-            <div id="messages">
+    <section>
+        {% if messages %}
+        <div class="container">
+            <div id="messages" class="sixteen columns">
                 <ul>
                     {% for message in messages %}
                         <li class="{% if message.tags %}{{ message.tags }}{% endif %}">
@@ -84,12 +87,17 @@
                     {% endfor %}
                 </ul>
             </div>
-            {% endif %}
-
-            {% block content %}
-            {% endblock content %}
         </div>
+        {% endif %}
+        <div class="container">
+            {% block content %}
+            <div id="content" class="ten columns alpha">
+            {% endblock content %}
 
+            {% block sidebar %}
+            <div id="sidebar" class="six columns omega">
+            {% endblock sidebar %}
+        </div>
     </section><!-- container -->
 
     <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>

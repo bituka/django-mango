@@ -2,7 +2,13 @@
 {% load i18n %}
 
 {% block content %}
-<div id="home">
-    Home!
+{{ block.super }}
+Home
 </div>
 {% endblock content %}
+
+{% block sidebar %}
+{{ block.super }}
+Sidebar
+</div>
+{% endblock sidebar %}

@@ -2,7 +2,8 @@
 /* #Site Styles
 ================================================== */
 
-	body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+	body, h1, h2, h3, h4, h5, h6, input, textarea, select,
+	.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
 		font-family: 'PT Sans', Arial, Helvetica, sans-serif;
 	}
 
@@ -19,7 +20,7 @@
 	}
 
 	header h1 {
-		margin-bottom: 0;
+		margin: 20px 0 0 0;
 	}
 
 	header h1 a, header h1 a:visited {
@@ -56,38 +57,39 @@
 		text-decoration: none;
 	}
 
-	nav > div > ul > li {
+	nav div > ul > li {
 		float: left;
 		position: relative;
 	}
 
-	nav > div > ul > li > ul {
+	nav div > ul > li > ul {
 		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 		position: absolute;
 		left: -10000px;
 		z-index: 10;
 	}
 
-	nav > div > ul > li:hover {
+	nav div > ul > li:hover {
 		background-color: white;
 	}
 
-	nav > div > ul > li:hover > ul {
+	nav div > ul > li:hover > ul {
 		left: 0;
 	}
 
-	nav > div > ul > li > ul > li {
+	nav div > ul > li > ul > li {
 		overflow: visible;
 		white-space: nowrap;
 	}
 
-	nav > div > ul > li > ul > li:hover {
+	nav div > ul > li > ul > li:hover {
 		background-color: #f0f0f0;
 	}
 
-	section {
-		background-color: white;
+	section .container {
+		padding-top: 20px;
 	}
+
 
 /* #Page Styles
 ================================================== */
