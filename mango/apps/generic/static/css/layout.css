@@ -1,24 +1,97 @@
-/*
-* Skeleton V1.2
-* Copyright 2011, Dave Gamache
-* www.getskeleton.com
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-* 6/20/2012
-*/
-
-/* Table of Content
-==================================================
-	#Site Styles
-	#Page Styles
-	#Media Queries
-	#Font-Face */
 
 /* #Site Styles
 ================================================== */
 
+	body, h1, h2, h3, h4, h5, h6, input, textarea, select {
+		font-family: 'PT Sans', Arial, Helvetica, sans-serif;
+	}
+
+	header {
+		background: #5a9fd4;
+		background: -moz-linear-gradient(top,  #5a9fd4 0%, #306998 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5a9fd4), color-stop(100%,#306998));
+		background: -webkit-linear-gradient(top,  #5a9fd4 0%,#306998 100%);
+		background: -o-linear-gradient(top,  #5a9fd4 0%,#306998 100%);
+		background: -ms-linear-gradient(top,  #5a9fd4 0%,#306998 100%);
+		background: linear-gradient(to bottom,  #5a9fd4 0%,#306998 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a9fd4', endColorstr='#306998',GradientType=0 );
+		color: white;
+	}
+
+	header h1 {
+		margin-bottom: 0;
+	}
+
+	header h1 a, header h1 a:visited {
+		color: white;
+	}
+
+	header h1 a {
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	nav {
+		background: #ffd43b;
+		background: -moz-linear-gradient(top,  #ffd43b 0%, #ffe873 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffd43b), color-stop(100%,#ffe873));
+		background: -webkit-linear-gradient(top,  #ffd43b 0%,#ffe873 100%);
+		background: -o-linear-gradient(top,  #ffd43b 0%,#ffe873 100%);
+		background: -ms-linear-gradient(top,  #ffd43b 0%,#ffe873 100%);
+		background: linear-gradient(to bottom,  #ffd43b 0%,#ffe873 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd43b', endColorstr='#ffe873',GradientType=0 );
+	}
+
+	nav ul, nav ul li {
+		margin: 0;
+	}
+
+	nav ul li {
+		padding: 0 10px;
+	}
+
+	nav ul li a {
+		display: inline-block;
+		line-height: 30px;
+		text-decoration: none;
+	}
+
+	nav > div > ul > li {
+		float: left;
+		position: relative;
+	}
+
+	nav > div > ul > li > ul {
+		box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+		position: absolute;
+		left: -10000px;
+		z-index: 10;
+	}
+
+	nav > div > ul > li:hover {
+		background-color: white;
+	}
+
+	nav > div > ul > li:hover > ul {
+		left: 0;
+	}
+
+	nav > div > ul > li > ul > li {
+		overflow: visible;
+		white-space: nowrap;
+	}
+
+	nav > div > ul > li > ul > li:hover {
+		background-color: #f0f0f0;
+	}
+
+	section {
+		background-color: white;
+	}
+
 /* #Page Styles
 ================================================== */
+
 	.errorlist, .errorlist li {margin: 0}
 	dl {overflow: hidden}
 	hr {margin: 20px 0}
