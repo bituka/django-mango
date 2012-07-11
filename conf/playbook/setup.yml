@@ -10,7 +10,7 @@
     - vars.yml
 
   vars_prompt:
-    supervisord_password: supervisord password (hashed with SHA)
+    supervisor_http_pasword: supervisor http server password (hashed with SHA)
 
   tasks:
   # TODO: install nginx

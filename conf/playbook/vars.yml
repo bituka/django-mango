@@ -5,4 +5,4 @@ repo_branch: master
 venv_path: /home/mango/mangoenv
 logs_path: /home/mango/logs
 
-supervisord_username: pypug
+supervisor_http_username: pypug
