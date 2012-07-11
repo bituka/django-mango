@@ -17,11 +17,34 @@
         - restart supervisord processes
       sudo: False
 
+    - name: create localsettings
+      action: template src=templates/localsettings.py dest=$repo_path/mango/mango/localsettings.py
+      sudo: False
+
+    - name: activate virtualenv
+      action: shell source $venv_path/bin/activate
+      sudo: False
+
+    - name: run syncdb
+      action: shell cd $repo_path/mango && $venv_path/bin/python manage.py syncdb --noinput
+      sudo: False
+
+    - name: run migrations
+      action: shell cd $repo_path/mango && $venv_path/bin/python manage.py migrate --noinput
+      sudo: False
+
+    - name: create superuser
+      action: shell cd $repo_path/mango && $venv_path/bin/python manage.py createsuperuser --username=$admin_username --email=$admin_email
+      notify:
+        - restart supervisord processes
+      sudo: False
+
   handlers:
     # django-mango
     - name: setup dependencies
       action: shell cd $repo_path && $venv_path/bin/python setup.py develop
       sudo: False
+
     - name: run tests
       action: shell $venv_path/bin/python $repo_path/mango/manage.py test
       sudo: False

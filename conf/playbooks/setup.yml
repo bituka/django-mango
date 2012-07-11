@@ -54,6 +54,9 @@
     - name: make sure supervisor is running
       action: service name=supervisor state=started
 
+    # TODO for production:
+    # - name: install database
+
   handlers:
     - name: restart nginx
       action: service name=nginx state=restarted
