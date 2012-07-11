@@ -6,3 +6,5 @@ venv_path: /home/mango/mangoenv
 logs_path: /home/mango/logs
 
 supervisor_http_username: pypug
+
+repo_url: git://github.com/pypug/django-mango.git
