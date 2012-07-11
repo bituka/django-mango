@@ -1,0 +1,26 @@
+---
+- hosts: django-mango
+
+  user: mango
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+  - name: get latest code
+    action: git repo=git://github.com/pypug/django-mango.git dest=$repo_path branch=$repo_branch
+    notify:
+    - setup dependencies
+    - run tests
+    - restart supervisord processes
+
+  handlers:
+  # django-mango
+  - name: setup dependencies
+    action: shell cd $repo_path && $venv_path/bin/python setup.py develop
+  - name: run tests
+    action: shell $venv_path/bin/python $repo_path/mango/manage.py test
+  # supervisord
+  # FIXME: not dry
+  - name: restart supervisord processes
+    action: shell $venv_path/bin/supervisorctl -c $conf_path/supervisord.conf restart all
