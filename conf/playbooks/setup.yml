@@ -16,7 +16,7 @@
       action: apt pkg=git state=installed update-cache=yes
 
     - name: install nginx
-      action: apt pkg=nginx=1.1.19-1 state=installed
+      action: apt pkg=nginx state=latest
 
     - name: setup nginx config
       action: template src=templates/nginx.conf dest=/etc/nginx/conf.d/mango.conf
@@ -40,11 +40,11 @@
       sudo: False
 
     - name: create logs directory
-      action: shell mkdir -p $logs_path
+      action: shell mkdir -p $logs_path $public_path
       sudo: False
 
     - name: install supervisor
-      action: apt pkg=supervisor=3.0a8-1.1 state=installed
+      action: apt pkg=supervisor state=latest
 
     - name: setup supervisor config
       action: template src=templates/supervisord.conf dest=/etc/supervisor/conf.d/mango.conf
