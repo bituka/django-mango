@@ -13,7 +13,7 @@
 
   tasks:
     - name: install git
-      action: apt pkg=git state=installed # update-cache=yes
+      action: apt pkg=git state=installed update-cache=yes
 
     - name: install nginx
       action: apt pkg=nginx=1.1.19-1 state=installed
