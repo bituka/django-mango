@@ -13,6 +13,9 @@
     - name: pull changes from repo
       action: git repo=$repo_url dest=$repo_path branch=$repo_branch version=HEAD
 
+    - name: setup dependencies
+      action: shell . $venv_path/bin/activate && cd $repo_path && python setup.py develop
+
     - name: run migrations
       action: shell . $venv_path/bin/activate && cd $repo_path/mango && python manage.py migrate --noinput
 

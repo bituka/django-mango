@@ -10,6 +10,8 @@
 
   vars_prompt:
     supervisor_http_pasword: supervisor http server password (hashed with SHA)
+    nginx_conf: which nginx configuration to use
+    htpasswd_password: htpasswd password
 
   tasks:
     - name: install git
@@ -19,18 +21,24 @@
       action: apt pkg=nginx state=latest
 
     - name: setup nginx config
-      action: template src=templates/nginx.conf dest=/etc/nginx/conf.d/mango.conf
+      action: template src=templates/nginx_$nginx_conf.conf dest=/etc/nginx/conf.d/mango.conf
       notify:
         - restart nginx
 
     - name: make sure nginx is running
       action: service name=nginx state=started
 
+    - name: install htpasswd
+      action: apt pkg=python-pip state=latest
+
+    - name: create htpassword file
+      action: command htpasswd -dbc /home/mango/.htpasswd mango $htpasswd_password
+
     - name: install setuptools
-      action: apt pkg=python-setuptools state=installed
+      action: apt pkg=python-setuptools state=latest
 
     - name: install pip
-      action: apt pkg=python-pip state=installed
+      action: apt pkg=apache2-utils state=latest
 
     - name: install virtualenv
       action: command pip install virtualenv

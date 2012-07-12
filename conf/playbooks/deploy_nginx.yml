@@ -1,0 +1,26 @@
+---
+- hosts: django-mango
+
+  user: mango
+
+  sudo: True
+
+  vars_files:
+    - vars.yml
+
+  vars_prompt:
+    nginx_conf: which nginx configuration to use
+
+  tasks:
+
+    - name: setup nginx config
+      action: template src=templates/nginx_$nginx_conf.conf dest=/etc/nginx/conf.d/mango.conf
+
+    - name: restart nginx
+      action: service name=nginx state=restarted
+      notify:
+        - make sure nginx is running
+
+  handlers:
+    - name: make sure nginx is running
+      action: service name=nginx state=started
