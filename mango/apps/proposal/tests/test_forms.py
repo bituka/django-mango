@@ -6,9 +6,9 @@ from proposal.forms import ProposalForm
 
 
 class ProposalFormTest(TestCase):
-    fixtures = ['proposal_types.json',
-                'categories.json',
-                'audience_levels.json']
+    # fixtures = ['proposal_types.json',
+    #             'categories.json',
+    #             'audience_levels.json']
 
     def setUp(self):
         self.user = User.objects.create_user('marconi',
@@ -21,7 +21,7 @@ class ProposalFormTest(TestCase):
         """
         proposal_type = ProposalType.objects.get(name='Talk')
         audience_level = AudienceLevel.objects.get(name='Experienced')
-        category = Category.objects.get(name='Web Framework')
+        category = Category.objects.get(name='Web Frameworks')
 
         self.assertEqual(Proposal.objects.count(), 0)
         data = {'title': 'Awesome Talk',
@@ -44,7 +44,7 @@ class ProposalFormTest(TestCase):
         """
         proposal_type = ProposalType.objects.get(name='Talk')
         audience_level = AudienceLevel.objects.get(name='Experienced')
-        category = Category.objects.get(name='Web Framework')
+        category = Category.objects.get(name='Web Frameworks')
 
         self.assertEqual(Proposal.objects.count(), 0)
         data = {'title': 'Awesome Talk',
