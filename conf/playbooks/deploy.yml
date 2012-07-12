@@ -8,52 +8,24 @@
   vars_files:
     - vars.yml
 
-  vars_prompt:
-    admin_password: django admin password
-
   tasks:
-    - name: get latest code
-      action: git repo=$repo_url dest=$repo_path branch=$repo_branch
 
-    - name: setup dependencies
-      action: shell . $venv_path/bin/activate && cd $repo_path && python setup.py develop
-
-    - name: run tests
-      action: shell . $venv_path/bin/activate && python $repo_path/mango/manage.py test
-
-    - name: create localsettings
-      action: template src=templates/localsettings.py dest=$repo_path/mango/mango/localsettings.py
-
-    - name: run syncdb
-      action: shell . $venv_path/bin/activate && cd $repo_path/mango && python manage.py syncdb --noinput
+    - name: pull changes from repo
+      action: git repo=$repo_url dest=$repo_path branch=$repo_branch version=HEAD
 
     - name: run migrations
       action: shell . $venv_path/bin/activate && cd $repo_path/mango && python manage.py migrate --noinput
 
-    - name: create superuser
-      action: shell . $venv_path/bin/activate && cd $repo_path/mango && python manage.py createsuperuser --username=$admin_username --email=$admin_email --noinput
-      notify:
-        - restart supervisord processes
-
-    - name: create set superuser password script
-      action: template src=templates/set_admin_pass.py dest=$repo_path/mango/set_admin_pass.py
-
-    - name: execute set superuser password script
-      action: shell . $venv_path/bin/activate && python $repo_path/mango/set_admin_pass.py
-
-    - name: remove set superuser password script
-      action: shell rm $repo_path/mango/set_admin_pass.py
-
     - name: collect static files
       action: shell . $venv_path/bin/activate && cd $repo_path/mango && python manage.py collectstatic --clear --noinput
+      notify:
+        - restart supervisord processes
 
     - name: make sure supervisor is running
       action: service name=supervisor state=started
       sudo: True
 
   handlers:
-    # supervisord
-    # FIXME: not dry
     - name: restart supervisord processes
       action: command supervisorctl restart all
       sudo: True

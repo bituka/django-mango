@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n sitetree %}
 {% load static from staticfiles %}
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -43,6 +43,9 @@
     <nav>
         <div class="container">
             <div class="sixteen columns">
+                {% sitetree_menu from "primary_nav" include "trunk" %}
+
+                <!-- 
                 <ul class="clearfix">
                     <li><a href="#">{% trans "About" %}</a></li>
                     <li><a href="#">{% trans "Events" %}</a></li>
@@ -70,7 +73,8 @@
                         </ul>
                         {% endif %}
                     </li>
-                </ul>
+                </ul> -->
+
             </div>
         </div>
     </nav>

@@ -132,6 +132,7 @@ INSTALLED_APPS = (
     'south',
     'endless_pagination',
     'django_extensions',
+    'sitetree',
     # Django Mango
     'conference',
     'generic',
